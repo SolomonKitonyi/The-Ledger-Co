@@ -17,7 +17,7 @@ The output should be
 # How to run the Program
 - Clone the repo:
   ```
-    $ git clone https://github.com/SolomonKitonyi/The-Ledger-Co
+    $ git clone https://github.com/SolomonKitonyi/The-Ledger-Co.git
   ```
 - Navigate to the cloned folder:
   ```
