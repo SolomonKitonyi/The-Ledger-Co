@@ -62,5 +62,30 @@ readInterface.on('line', function (line) {
 				item.lumpSum = lumpSum;
 			}
 		});
+	} else if (type === 'BALANCE') {
+		const bankName = inputData[1];
+		const borrowerName = inputData[2];
+		const emiNumber = parseInt(inputData[3]);
+
+		//loop through the data and perform calculations
+		data.forEach((item) => {
+			if (item.borrowerName === borrowerName && item.bankName === bankName) {
+				item.emiNumber = emiNumber;
+				let amountPaid;
+				let remainingEmis;
+
+				if (item.emiNumber < item.emiNumber2) {
+					item.amount = item.amount + item.lumpSum;
+					amountPaid = item.emiNumber * item.emi;
+					remainingEmis = Math.ceil(item.amount / item.emi) - emiNumber;
+				} else {
+					amountPaid = item.emi * emiNumber + item.lumpSum;
+					remainingEmis = item.numberOfEmis - emiNumber;
+				}
+				console.log(
+					`${item.bankName} ${item.borrowerName} ${amountPaid} ${remainingEmis}`
+				);
+			}
+		});
 	}
 });
