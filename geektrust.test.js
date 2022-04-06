@@ -60,4 +60,26 @@ describe('returns correct data to work with', () => {
 			}
 		});
 	});
+	it('should not execute a block if not neccesary', () => {
+		const readInterface = readline.createInterface({
+			input: fs.createReadStream('/home/solomon/Desktop/file.txt'),
+		});
+		readInterface.on('line', function (line) {
+			const data = line.split(' ');
+			const type = data[0];
+			let message;
+			if (type !== 'LOAN') {
+				message = data[0];
+
+				expect(message).not.toBe('LOAN');
+			} else if (type !== 'PAYMENT') {
+				message = data[0];
+				expect(message).not.toBe('PAYMENT');
+			} else if (type !== 'BALANCE') {
+				message = data[0];
+
+				expect(message).not.toBe('BALANCE');
+			}
+		});
+	});
 });
