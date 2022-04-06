@@ -11,3 +11,28 @@ describe('tests file path passed', () => {
 		expect(fileUrl).toBeDefined();
 	});
 });
+
+describe('test reading data', () => {
+	it('should read correctly given correct path', () => {
+		const readInterface = readline.createInterface({
+			input: fs.createReadStream('/home/solomon/Desktop/file.txt'),
+		});
+		readInterface.on('line', function (line) {
+			const data = line;
+			expect(data).toBeDefined();
+		});
+	});
+	it('should throw error given incorrect path', () => {
+		const readInterface = readline.createInterface({
+			input: fs.createReadStream(''),
+		});
+		try {
+			readInterface.on('line', function (line) {
+				const data = line;
+				expect(data).toThrow();
+			});
+		} catch (error) {
+			throw error;
+		}
+	});
+});
