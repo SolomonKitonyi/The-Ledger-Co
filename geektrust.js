@@ -56,6 +56,7 @@ readInterface.on('line', function (line) {
 		//Loop through the data and process it
 		data.forEach((item) => {
 			if (item.bankName === bankName && item.borrowerName === borrowerName) {
+				item.emiNumber2 = emiNumber;
 				item.amount = item.amount - lumpSum;
 				item.numberOfEmis = Math.ceil(item.amount / item.emi);
 				item.lumpSum = lumpSum;
