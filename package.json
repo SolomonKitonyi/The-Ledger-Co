@@ -1,0 +1,17 @@
+{
+  "name": "the-ledger-co-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "geektrust.js",
+  "scripts": {
+    "start": "node geektrust.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "is-valid-path": "^0.1.1",
+    "jest": "^27.5.1"
+  }
+}
