@@ -87,5 +87,7 @@ readInterface.on('line', function (line) {
 				);
 			}
 		});
+	} else {
+		console.log('Unprocessable command');
 	}
 });
