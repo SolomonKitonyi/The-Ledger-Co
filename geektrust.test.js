@@ -36,3 +36,28 @@ describe('test reading data', () => {
 		}
 	});
 });
+
+describe('returns correct data to work with', () => {
+	it('should excute Loan type if block if command starts with LOAN', () => {
+		const readInterface = readline.createInterface({
+			input: fs.createReadStream('/home/solomon/Desktop/file.txt'),
+		});
+		readInterface.on('line', function (line) {
+			const data = line.split(' ');
+			const type = data[0];
+			let message;
+			if (type === 'LOAN') {
+				message = data[0];
+
+				expect(message).toBe('LOAN');
+			} else if (type == 'PAYMENT') {
+				message = data[0];
+				expect(message).toBe('PAYMENT');
+			} else if (type === 'BALANCE') {
+				message = data[0];
+
+				expect(message).toBe('BALANCE');
+			}
+		});
+	});
+});
