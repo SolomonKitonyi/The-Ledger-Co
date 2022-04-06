@@ -25,4 +25,41 @@ const readInterface = readline.createInterface({
 readInterface.on('line', function (line) {
 	const inputData = line.split(' ');
 	const type = inputData[0];
+
+	//Process Loan command
+	if (type === 'LOAN') {
+		//save data for later use in other commands
+		const loanData = {
+			type: inputData[0],
+			bankName: inputData[1],
+			borrowerName: inputData[2],
+			principal: parseInt(inputData[3]),
+			numberOfYears: parseInt(inputData[4]),
+			ratePerAnnum: parseInt(inputData[5]) / 100,
+			lumpSum: 0,
+			emiNumber: 0,
+		};
+		loanData.interest =
+			loanData.principal * loanData.numberOfYears * loanData.ratePerAnnum;
+		loanData.amount = loanData.principal + loanData.interest;
+		loanData.emi = Math.ceil(loanData.amount / (loanData.numberOfYears * 12));
+		loanData.numberOfEmis = Math.ceil(loanData.amount / loanData.emi);
+
+		//add loanData to data the array containing all loans
+		[...data, data.push(loanData)];
+	} else if (type === 'PAYMENT') {
+		const bankName = inputData[1];
+		const borrowerName = inputData[2];
+		const lumpSum = parseInt(inputData[3]);
+		const emiNumber = parseInt(inputData[4]);
+
+		//Loop through the data and process it
+		data.forEach((item) => {
+			if (item.bankName === bankName && item.borrowerName === borrowerName) {
+				item.amount = item.amount - lumpSum;
+				item.numberOfEmis = Math.ceil(item.amount / item.emi);
+				item.lumpSum = lumpSum;
+			}
+		});
+	}
 });
