@@ -30,3 +30,8 @@ The output should be
   ```
     $ npm start <file path>
   ```
+# How to run tests
+```
+    $ npm test
+  ```
+
